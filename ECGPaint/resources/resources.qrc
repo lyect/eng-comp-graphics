@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>toolbar/color_choose/custom_color_icon.png</file>
+        <file>toolbar/filesystem/new_file_icon.png</file>
+        <file>toolbar/filesystem/open_file_icon.png</file>
+        <file>toolbar/filesystem/save_file_icon.png</file>
+        <file>toolbar/info/info_icon.png</file>
+        <file>icon/icon_128.ico</file>
+        <file>toolbar/tools/fill_icon.png</file>
+        <file>toolbar/tools/polygon_icon.png</file>
+        <file>toolbar/tools/line_icon.png</file>
+        <file>toolbar/tools/star_icon.png</file>
+        <file>toolbar/tools/resize_icon.png</file>
+        <file>toolbar/tools/clear_icon.png</file>
+    </qresource>
+</RCC>
