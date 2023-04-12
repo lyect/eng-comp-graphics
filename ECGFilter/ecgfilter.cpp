@@ -5,77 +5,67 @@
 cv::Mat QImageToMat(const QImage & image){
 	cv::Mat out;
 	switch(image.format()) {
-
-	case QImage::Format_Invalid:
-	{
-		cv::Mat empty;
-		empty.copyTo(out);
-		break;
-	}
-	case QImage::Format_RGB32:
-	{
-		cv::Mat view(image.height(),image.width(),CV_8UC4,(void *)image.constBits(),image.bytesPerLine());
-		view.copyTo(out);
-		break;
-	}
-	case QImage::Format_RGB888:
-	{
-		cv::Mat view(image.height(),image.width(),CV_8UC3,(void *)image.constBits(),image.bytesPerLine());
-		cv::cvtColor(view, out, cv::COLOR_RGB2BGR);
-		break;
-	}
-	default:
-	{
-		QImage conv = image.convertToFormat(QImage::Format_RGB32);
-		cv::Mat view(conv.height(),conv.width(),CV_8UC4,(void *)conv.constBits(),conv.bytesPerLine());
-		view.copyTo(out);
-		break;
-	}
+		case QImage::Format_Invalid: {
+			cv::Mat empty;
+			empty.copyTo(out);
+			break;
+		}
+		case QImage::Format_RGB32: {
+			cv::Mat view(image.height(),image.width(),CV_8UC4,(void *)image.constBits(),image.bytesPerLine());
+			view.copyTo(out);
+			break;
+		}
+		case QImage::Format_RGB888: {
+			cv::Mat view(image.height(),image.width(),CV_8UC3,(void *)image.constBits(),image.bytesPerLine());
+			cv::cvtColor(view, out, cv::COLOR_RGB2BGR);
+			break;
+		}
+		default: {
+			QImage conv = image.convertToFormat(QImage::Format_RGB32);
+			cv::Mat view(conv.height(),conv.width(),CV_8UC4,(void *)conv.constBits(),conv.bytesPerLine());
+			view.copyTo(out);
+			break;
+		}
 	}
 	return out;
 }
 
-QImage cvMatToQImage( const cv::Mat &inMat )
-   {
-	  switch ( inMat.type() )
-	  {
-		 // 8-bit, 4 channel
-		 case CV_8UC4:
-		 {
-			QImage image( inMat.data,
-						  inMat.cols, inMat.rows,
-						  static_cast<int>(inMat.step),
-						  QImage::Format_RGB32 );
+QImage MatToQImage(const cv::Mat &inMat) {
+	switch (inMat.type()) {
+		case CV_8UC4: { // 8-bit, 4 channel
+			QImage image(
+					inMat.data,
+					inMat.cols, inMat.rows,
+					static_cast<int>(inMat.step),
+					QImage::Format_RGB32
+			);
 			return image;
-		 }
-
-		 // 8-bit, 3 channel
-		 case CV_8UC3:
-		 {
-			QImage image( inMat.data,
-						  inMat.cols, inMat.rows,
-						  static_cast<int>(inMat.step),
-						  QImage::Format_RGB888 );
+		}
+		case CV_8UC3: { // 8-bit, 3 channel
+			QImage image(
+					inMat.data,
+					inMat.cols, inMat.rows,
+					static_cast<int>(inMat.step),
+					QImage::Format_RGB888
+			);
 			return image.rgbSwapped();
-		 }
-
-		 // 8-bit, 1 channel
-		 case CV_8UC1:
-		 {
-			QImage image( inMat.data,
-						  inMat.cols, inMat.rows,
-						  static_cast<int>(inMat.step),
-						  QImage::Format_Grayscale8 );
+		}
+		case CV_8UC1: { // 8-bit, 1 channel
+			QImage image(
+					inMat.data,
+					inMat.cols, inMat.rows,
+					static_cast<int>(inMat.step),
+					QImage::Format_Grayscale8
+			);
 			return image;
-		 }
-
-		 default:
-			qWarning() << "ASM::cvMatToQImage() - cv::Mat image type not handled in switch:" << inMat.type();
+		}
+		default: {
+			qWarning() << "MatToQImage() - cv::Mat image type not handled in switch: " << inMat.type();
 			break;
-	  }
-
-	  return QImage();
-   }
+		}
+	}
+	return QImage();
+}
 
 ECGFilter::ECGFilter(int &argc, char *argv[]) : QApplication(argc, argv) {
 
@@ -165,7 +155,7 @@ QImage ECGFilter::interpolate(const QImage &image) {
 
 	cv::resize(mat, newMat, cv::Size(newWidth, newHeight), 0, 0, currentInterpolation);
 
-	return cvMatToQImage(newMat);
+	return MatToQImage(newMat);
 }
 
 // #####################
