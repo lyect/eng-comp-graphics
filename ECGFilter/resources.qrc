@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/:"/>
+    <qresource prefix="/">
+        <file>resources/icons/displaymodes/show_fitted_image_icon.png</file>
+        <file>resources/icons/displaymodes/show_real_sized_image_icon.png</file>
+        <file>resources/icons/dithering/floyd_dithering_icon.png</file>
+        <file>resources/icons/dithering/ordered_dithering_icon.png</file>
+        <file>resources/icons/filesystem/open_file_icon.png</file>
+        <file>resources/icons/filesystem/save_file_icon.png</file>
+        <file>resources/icons/filters/embossing_filter_icon.png</file>
+        <file>resources/icons/filters/gamma_correction_filter_icon.png</file>
+        <file>resources/icons/filters/blur_filter_icon.png</file>
+        <file>resources/icons/filters/inversion_filter_icon.png</file>
+        <file>resources/icons/filters/monochrome_filter_icon.png</file>
+        <file>resources/icons/filters/roberts_filter_icon.png</file>
+        <file>resources/icons/filters/sharpen_filter_icon.png</file>
+        <file>resources/icons/filters/sobel_filter_icon.png</file>
+        <file>resources/icons/filters/watercolor_filter_icon.png</file>
+        <file>resources/icons/other/rotate_image_icon.png</file>
+        <file>resources/icons/states/redo_icon.png</file>
+        <file>resources/icons/states/undo_icon.png</file>
+        <file>resources/icons/window/icon_128.png</file>
+        <file>resources/icons/filters/pencil_filter_icon.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,133 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#include <QColor>
+
+namespace Constants {
+
+// #############
+// #   ENUMS   #
+// #############
+
+enum DisplayMode {
+	REAL_SIZED,
+	FITTED
+};
+
+// ###################
+// #   CONSTRAINTS   #
+// ###################
+
+// Global constraints
+
+constexpr int COLOR_MAX_VALUE = 255;
+
+// Window constraints
+
+constexpr int MIN_WINDOW_WIDTH = 640;
+constexpr int MIN_WINDOW_HEIGHT = 480;
+
+// Image rotation constraints
+
+constexpr int MIN_ROTATION_ANGLE = -180;
+constexpr int MAX_ROTATION_ANGLE = 180;
+constexpr int ROTATION_ANGLE_STEP = 1;
+
+// Filter constraints
+
+constexpr int MIN_BLUR_FILTER_SIZE = 3;
+constexpr int MAX_BLUR_FILTER_SIZE = 11;
+constexpr int BLUR_FILTER_SIZE_STEP = 2;
+constexpr float BLUR_FILTER_SIGMA = 2;
+constexpr int BLUR_FILTER_MAX_SIZE_TO_USE_GAUSS_BLUR = 5;
+
+constexpr float MIN_GAMMA_VALUE = 0.1;
+constexpr float MAX_GAMMA_VALUE = 3;
+constexpr float GAMMA_VALUE_STEP = 0.1;
+
+constexpr float MIN_ROBERTS_FILTER_BINARIZATION_THRESHOLD = 16;
+constexpr float MAX_ROBERTS_FILTER_BINARIZATION_THRESHOLD = 240;
+constexpr float ROBERTS_FILTER_BINARIZATION_THRESHOLD_STEP = 1;
+
+constexpr float MIN_SOBEL_FILTER_BINARIZATION_THRESHOLD = 16;
+constexpr float MAX_SOBEL_FILTER_BINARIZATION_THRESHOLD = 240;
+constexpr float SOBEL_FILTER_BINARIZATION_THRESHOLD_STEP = 1;
+
+constexpr int WATERCOLOR_FILTER_SIZE = 5;
+
+// Dithering constraints
+
+constexpr int MIN_FLOYD_DITHERING_RED_QUANTIZATION = 2;
+constexpr int MAX_FLOYD_DITHERING_RED_QUANTIZATION = 128;
+constexpr int FLOYD_DITHERING_RED_QUANTIZATION_STEP = 1;
+
+constexpr int MIN_FLOYD_DITHERING_GREEN_QUANTIZATION = 2;
+constexpr int MAX_FLOYD_DITHERING_GREEN_QUANTIZATION = 128;
+constexpr int FLOYD_DITHERING_GREEN_QUANTIZATION_STEP = 1;
+
+constexpr int MIN_FLOYD_DITHERING_BLUE_QUANTIZATION = 2;
+constexpr int MAX_FLOYD_DITHERING_BLUE_QUANTIZATION = 128;
+constexpr int FLOYD_DITHERING_BLUE_QUANTIZATION_STEP = 1;
+
+constexpr int MIN_ORDERED_DITHERING_RED_QUANTIZATION = 2;
+constexpr int MAX_ORDERED_DITHERING_RED_QUANTIZATION = 128;
+constexpr int ORDERED_DITHERING_RED_QUANTIZATION_STEP = 1;
+
+constexpr int MIN_ORDERED_DITHERING_GREEN_QUANTIZATION = 2;
+constexpr int MAX_ORDERED_DITHERING_GREEN_QUANTIZATION = 128;
+constexpr int ORDERED_DITHERING_GREEN_QUANTIZATION_STEP = 1;
+
+constexpr int MIN_ORDERED_DITHERING_BLUE_QUANTIZATION = 2;
+constexpr int MAX_ORDERED_DITHERING_BLUE_QUANTIZATION = 128;
+constexpr int ORDERED_DITHERING_BLUE_QUANTIZATION_STEP = 1;
+
+constexpr int ORDERED_DITHERING_2X2_MATRIX_THRESHOLD = 64;
+constexpr int ORDERED_DITHERING_4X4_MATRIX_THRESHOLD = 16;
+constexpr int ORDERED_DITHERING_8X8_MATRIX_THRESHOLD = 4;
+constexpr int ORDERED_DITHERING_16X16_MATRIX_THRESHOLD = 2;
+
+
+// Color parameter constraints
+
+constexpr int COLOR_PARAMETER_BUTTON_FILLING_WIDTH = 40;
+constexpr int COLOR_PARAMETER_BUTTON_FILLING_HEIGHT = 40;
+
+constexpr int COLOR_PARAMETER_BUTTON_FILLING_WIDTH_INDENT = 2;
+constexpr int COLOR_PARAMETER_BUTTON_FILLING_HEIGHT_INDENT = 2;
+
+// View constraints
+
+constexpr int VIEW_BORDER_WIDTH = 4;
+
+// ################
+// #   DEFAULTS   #
+// ################
+
+constexpr int DEFAULT_WINDOW_WIDTH = 800;
+constexpr int DEFAULT_WINDOW_HEIGHT = 600;
+
+constexpr int DEFAULT_ROTATION_ANGLE = 0;
+
+constexpr int DEFAULT_BLUR_FILTER_SIZE = 5;
+
+constexpr float DEFAULT_GAMMA_VALUE = 1.5;
+
+constexpr float DEFAULT_ROBERTS_FILTER_BINARIZATION_THRESHOLD = 128;
+static const QColor DEFAULT_ROBERTS_FILTER_FIRST_COLOR = QColor(Qt::white);
+static const QColor DEFAULT_ROBERTS_FILTER_SECOND_COLOR = QColor(Qt::black);
+
+constexpr float DEFAULT_SOBEL_FILTER_BINARIZATION_THRESHOLD = 128;
+static const QColor DEFAULT_SOBEL_FILTER_FIRST_COLOR = QColor(Qt::white);
+static const QColor DEFAULT_SOBEL_FILTER_SECOND_COLOR = QColor(Qt::black);
+
+constexpr int DEFAULT_FLOYD_DITHERING_RED_QUANTIZATION = 8;
+constexpr int DEFAULT_FLOYD_DITHERING_GREEN_QUANTIZATION = 8;
+constexpr int DEFAULT_FLOYD_DITHERING_BLUE_QUANTIZATION = 8;
+
+constexpr int DEFAULT_ORDERED_DITHERING_RED_QUANTIZATION = 8;
+constexpr int DEFAULT_ORDERED_DITHERING_GREEN_QUANTIZATION = 8;
+constexpr int DEFAULT_ORDERED_DITHERING_BLUE_QUANTIZATION = 8;
+
+} // namespace Constants
+
+#endif // CONSTANTS_H
