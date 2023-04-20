@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/open_editor_action_icon.png</file>
+        <file>icons/save_scene_action_icon.png</file>
+        <file>icons/reset_angles_action_icon.png</file>
+        <file>icons/open_scene_action_icon.png</file>
+        <file>icons/window_icon.png</file>
+    </qresource>
+</RCC>
