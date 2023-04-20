@@ -35,5 +35,5 @@ void ECGWireframe::resetAnglesActionTriggered() {
 }
 
 void ECGWireframe::onOpenEditorActionTriggered() {
-	// open editor
+	m_wireframeEditor.exec();
 }

@@ -4,6 +4,7 @@
 #include <QApplication>
 
 #include "src/widgets/mainwindow/mainwindow.h"
+#include "src/widgets/editor/wireframeeditor.h"
 
 class ECGWireframe : public QApplication {
 public:
@@ -15,6 +16,7 @@ public:
 private:
 
 	MainWindow m_mainWindow;
+	WireframeEditor m_wireframeEditor;
 
 private slots:
 
