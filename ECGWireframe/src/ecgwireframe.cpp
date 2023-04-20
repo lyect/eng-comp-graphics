@@ -5,15 +5,15 @@
 // ##############
 
 ECGWireframe::ECGWireframe(int &argc, char **argv) : QApplication(argc, argv) {
-	QObject::connect(&mainWindow, &MainWindow::openSceneActionTriggered, this, &ECGWireframe::onOpenSceneActionTriggered);
-	QObject::connect(&mainWindow, &MainWindow::saveSceneActionTriggered, this, &ECGWireframe::onSaveSceneActionTriggered);
-	QObject::connect(&mainWindow, &MainWindow::resetAnglesActionTriggered, this, &ECGWireframe::resetAnglesActionTriggered);
-	QObject::connect(&mainWindow, &MainWindow::openEditorActionTriggered, this, &ECGWireframe::onOpenEditorActionTriggered);
+	QObject::connect(&m_mainWindow, &MainWindow::openSceneActionTriggered, this, &ECGWireframe::onOpenSceneActionTriggered);
+	QObject::connect(&m_mainWindow, &MainWindow::saveSceneActionTriggered, this, &ECGWireframe::onSaveSceneActionTriggered);
+	QObject::connect(&m_mainWindow, &MainWindow::resetAnglesActionTriggered, this, &ECGWireframe::resetAnglesActionTriggered);
+	QObject::connect(&m_mainWindow, &MainWindow::openEditorActionTriggered, this, &ECGWireframe::onOpenEditorActionTriggered);
 }
 
 int ECGWireframe::exec() {
 
-	mainWindow.show();
+	m_mainWindow.show();
 
 	return QApplication::exec();
 }

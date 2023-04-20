@@ -18,18 +18,18 @@ public:
 
 private:
 
-	QToolBar *toolbar;
+	QToolBar *m_toolbar;
 
-	QAction *openSceneAction;
-	QAction *saveSceneAction;
+	QAction *m_openSceneAction;
+	QAction *m_saveSceneAction;
 
-	QAction *resetAnglesAction;
-	QAction *openEditorAction;
+	QAction *m_resetAnglesAction;
+	QAction *m_openEditorAction;
 
-	QAction *aboutAction;
+	QAction *m_aboutAction;
 
-	QWidget *centralWidget;
-	QVBoxLayout *mainLayout;
+	QWidget *m_centralWidget;
+	QVBoxLayout *m_mainLayout;
 
 	void initializeInterface();
 

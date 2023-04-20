@@ -14,7 +14,7 @@ public:
 
 private:
 
-	MainWindow mainWindow;
+	MainWindow m_mainWindow;
 
 private slots:
 
