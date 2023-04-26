@@ -4,8 +4,10 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 
-#include "src/common/renderparameters.h"
+#include "src/common/editorstate.h"
+#include "src/widgets/editor/controlpointeditorwidget.h"
 #include "src/widgets/editor/renderparameterswidget.h"
+#include "src/widgets/view/wireframeeditorview.h"
 
 class WireframeEditor : public QDialog {
 
@@ -18,17 +20,22 @@ public:
 private:
 
 	QVBoxLayout *m_mainLayout;
+	QHBoxLayout *m_parametersLayout;
 
+	WireframeEditorView *m_wfeView;
+	ControlPointEditorWidget *m_controlPointEditorWidget;
+	RenderParametersWidget *m_renderParametersWidget;
 	QDialogButtonBox *m_buttonBox;
 
-	RenderParametersWidget *m_renderParametersWidget;
-	RenderParameters m_renderParametersOnOpen;
+	EditorState m_openState;
+
+signals:
+
+	void editorAccepted(const EditorState &state);
 
 public slots:
 
 	int exec() override;
-
-public slots:
 
 	void onAccepted();
 	void onRejected();

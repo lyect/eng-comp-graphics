@@ -37,6 +37,10 @@ RenderParametersWidget::RenderParametersWidget(QWidget *parent) : QWidget(parent
 	m_mainLayout->addLayout(m_formLayout);
 
 	setLayout(m_mainLayout);
+
+	QObject::connect(m_nSpinBox, &QSpinBox::valueChanged, this, [this]() -> void {
+		emit onNParameterChanged(static_cast<qsizetype>(m_nSpinBox->value()));
+	});
 }
 
 RenderParameters RenderParametersWidget::getParameters() const {

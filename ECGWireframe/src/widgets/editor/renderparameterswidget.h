@@ -30,6 +30,10 @@ private:
 	QSpinBox *m_nSpinBox;
 	QSpinBox *m_m1SpinBox;
 	QSpinBox *m_m2SpinBox;
+
+signals:
+
+	void onNParameterChanged(qsizetype N);
 };
 
 #endif // RENDERPARAMETERSWIDGET_H
