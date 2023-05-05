@@ -14,6 +14,11 @@ WireframeEditorScene::WireframeEditorScene(QObject *parent) : QGraphicsScene(par
 	QObject::connect(this, &WireframeEditorScene::selectionChanged, this, &WireframeEditorScene::updateSelection);
 }
 
+WireframeEditorScene::~WireframeEditorScene() {
+	blockSignals(true);
+	QGraphicsScene::clear();
+}
+
 void WireframeEditorScene::repaintAxis(double zoomFactor) {
 
 	qreal tickWidth = Constants::EDITOR_AXIS_TICK_WIDTH;
@@ -115,16 +120,12 @@ void WireframeEditorScene::addControlPoint(const QPointF &scenePoint, const QTra
 	// draw new (or update) spline
 	updateSplines(m_wrappers.count() - 3, m_wrappers.count() - 3);
 
-	if (m_lastSelection == nullptr) {
-		emit infoUpdated(m_wrappers.count(), 0, QPointF());
+	if (m_lastSelection != nullptr) {
+		m_lastSelection->setSelected(false);
 	}
-	else {
-		auto it = std::find_if(m_wrappers.begin(), m_wrappers.end(), [&](const PointWrapper &c) -> bool {
-			return c.getPoint() == m_lastSelection;
-		});
-		int selectedPointIndex = std::distance(m_wrappers.begin(), it);
-		emit infoUpdated(m_wrappers.count(), selectedPointIndex + 1, it->getPoint()->getCenter());
-	}
+	m_lastSelection = controlPoint;
+	m_lastSelection->setSelected(true);
+	emit infoUpdated(m_wrappers.count(), m_wrappers.count(), controlPoint->getCenter());
 }
 
 void WireframeEditorScene::removeControlPoint(const QPointF &scenePoint, const QTransform &transform) {
@@ -182,7 +183,6 @@ void WireframeEditorScene::removeControlPoint(const QPointF &scenePoint, const Q
 		emit infoUpdated(0, 0, QPointF());
 	}
 
-
 	// remove control point from scene
 	m_wrappers[controlPointIndex].getPoint()->deleteLater();
 	m_wrappers.removeAt(controlPointIndex);
@@ -200,9 +200,8 @@ void WireframeEditorScene::setSplinePartition(qsizetype splinePartition) {
 }
 
 void WireframeEditorScene::clear() {
-	QGraphicsScene::clear();
-
 	m_wrappers.clear();
+	QGraphicsScene::clear();
 	m_xAxis = nullptr;
 	m_yAxis = nullptr;
 }

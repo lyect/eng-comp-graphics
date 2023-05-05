@@ -15,6 +15,7 @@ class WireframeEditorScene : public QGraphicsScene {
 public:
 
 	explicit WireframeEditorScene(QObject *parent = nullptr);
+	~WireframeEditorScene();
 
 	void repaintAxis(double viewZoomFactor);
 

@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 
-#include "src/common/editorstate.h"
+#include "src/common/wireframe.h"
 #include "src/widgets/editor/controlpointeditorwidget.h"
 #include "src/widgets/editor/renderparameterswidget.h"
 #include "src/widgets/view/wireframeeditorview.h"
@@ -17,6 +17,9 @@ public:
 
 	explicit WireframeEditor(QWidget *parent = nullptr);
 
+	Wireframe getWireframe() const;
+	void setWireframe(const Wireframe &wireframe);
+
 private:
 
 	QVBoxLayout *m_mainLayout;
@@ -27,15 +30,17 @@ private:
 	RenderParametersWidget *m_renderParametersWidget;
 	QDialogButtonBox *m_buttonBox;
 
-	EditorState m_openState;
+	Wireframe m_openWireframe;
 
 signals:
 
-	void editorAccepted(const EditorState &state);
+	void editorAccepted(const Wireframe &wireframe);
 
 public slots:
 
 	int exec() override;
+
+private slots:
 
 	void onAccepted();
 	void onRejected();

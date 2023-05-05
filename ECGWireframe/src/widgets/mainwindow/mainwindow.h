@@ -6,6 +6,10 @@
 #include <QToolBar>
 #include <QMenuBar>
 #include <QAction>
+#include <QSlider>
+#include <QLabel>
+
+#include "src/widgets/view/wireframemainview.h"
 
 class MainWindow : public QMainWindow {
 
@@ -14,7 +18,9 @@ class MainWindow : public QMainWindow {
 public:
 
 	explicit MainWindow(QWidget *parent = nullptr);
-	~MainWindow();
+
+	void showWireframe(const Wireframe &wireframe, bool reset);
+	void showWarning(const QString &text);
 
 private:
 
@@ -31,6 +37,8 @@ private:
 	QWidget *m_centralWidget;
 	QVBoxLayout *m_mainLayout;
 
+	WireframeMainView *m_wfmView;
+
 	void initializeInterface();
 
 signals:
@@ -38,7 +46,6 @@ signals:
 	void openSceneActionTriggered(QString chosenFilePath);
 	void saveSceneActionTriggered(QString chosenFilePath);
 
-	void resetAnglesActionTriggered();
 	void openEditorActionTriggered();
 };
 

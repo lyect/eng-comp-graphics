@@ -2,6 +2,7 @@
 #define ECGWIREFRAME_H
 
 #include <QApplication>
+#include <QFile>
 
 #include "src/widgets/mainwindow/mainwindow.h"
 #include "src/widgets/editor/wireframeeditor.h"
@@ -20,10 +21,11 @@ private:
 
 private slots:
 
-	void onOpenSceneActionTriggered();
-	void onSaveSceneActionTriggered();
-	void resetAnglesActionTriggered();
+	void onOpenSceneActionTriggered(QString chosenFilePath);
+	void onSaveSceneActionTriggered(QString chosenFilePath);
 	void onOpenEditorActionTriggered();
+
+	void onEditorAccepted(const Wireframe &wireframe);
 };
 
 #endif // ECGWIREFRAME_H

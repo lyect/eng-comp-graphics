@@ -51,11 +51,25 @@ WireframeEditor::WireframeEditor(QWidget *parent) : QDialog(parent) {
 	QObject::connect(m_controlPointEditorWidget, &ControlPointEditorWidget::deleteControlPoint, m_wfeView, &WireframeEditorView::deleteSelectedControlPoint);
 	QObject::connect(m_controlPointEditorWidget, &ControlPointEditorWidget::controlPointCoordinatesChanged, m_wfeView, &WireframeEditorView::updateSelectedControlPointCoordinates);
 
-
 	QObject::connect(m_buttonBox, &QDialogButtonBox::accepted, this, &WireframeEditor::accept);
 	QObject::connect(m_buttonBox, &QDialogButtonBox::rejected, this, &WireframeEditor::reject);
 	QObject::connect(this, &WireframeEditor::accepted, this, &WireframeEditor::onAccepted);
 	QObject::connect(this, &WireframeEditor::rejected, this, &WireframeEditor::onRejected);
+}
+
+Wireframe WireframeEditor::getWireframe() const {
+	return Wireframe(
+			m_renderParametersWidget->getParameters(),
+			m_wfeView->getControlPoints(),
+			m_wfeView->scene()->sceneRect().width(),
+			m_wfeView->scene()->sceneRect().height()
+	);
+}
+
+void WireframeEditor::setWireframe(const Wireframe &wireframe) {
+	m_renderParametersWidget->setParameters(wireframe.getRenderParameters());
+	m_wfeView->clear();
+	m_wfeView->setControlPoints(wireframe.getControlPoints());
 }
 
 // ####################
@@ -63,10 +77,7 @@ WireframeEditor::WireframeEditor(QWidget *parent) : QDialog(parent) {
 // ####################
 
 int WireframeEditor::exec() {
-	m_openState = EditorState(
-			m_renderParametersWidget->getParameters(),
-			m_wfeView->getControlPoints()
-	);
+	m_openWireframe = getWireframe();
 	return QDialog::exec();
 }
 
@@ -75,14 +86,9 @@ int WireframeEditor::exec() {
 // #####################
 
 void WireframeEditor::onAccepted() {
-	emit editorAccepted(EditorState(
-			m_renderParametersWidget->getParameters(),
-			m_wfeView->getControlPoints()
-	));
+	emit editorAccepted(getWireframe());
 }
 
 void WireframeEditor::onRejected() {
-	m_renderParametersWidget->setParameters(m_openState.getRenderParameters());
-	m_wfeView->clear();
-	m_wfeView->setControlPoints(m_openState.getControlPoints());
+	setWireframe(m_openWireframe);
 }

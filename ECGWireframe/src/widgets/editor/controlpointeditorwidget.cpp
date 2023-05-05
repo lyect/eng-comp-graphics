@@ -59,6 +59,13 @@ void ControlPointEditorWidget::setNoPointsState() {
 	m_deleteButton->setEnabled(false);
 	m_xSpinBox->setEnabled(false);
 	m_ySpinBox->setEnabled(false);
+	m_xSpinBox->blockSignals(true);
+	m_ySpinBox->blockSignals(true);
+	m_xSpinBox->setValue(0);
+	m_ySpinBox->setValue(0);
+	m_xSpinBox->blockSignals(false);
+	m_ySpinBox->blockSignals(false);
+
 }
 
 void ControlPointEditorWidget::setUnchoosenState() {
@@ -68,6 +75,12 @@ void ControlPointEditorWidget::setUnchoosenState() {
 	m_deleteButton->setEnabled(false);
 	m_xSpinBox->setEnabled(false);
 	m_ySpinBox->setEnabled(false);
+	m_xSpinBox->blockSignals(true);
+	m_ySpinBox->blockSignals(true);
+	m_xSpinBox->setValue(0);
+	m_ySpinBox->setValue(0);
+	m_xSpinBox->blockSignals(false);
+	m_ySpinBox->blockSignals(false);
 }
 
 void ControlPointEditorWidget::setChoosenState() {

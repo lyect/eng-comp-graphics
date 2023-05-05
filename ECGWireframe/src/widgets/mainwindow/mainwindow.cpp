@@ -20,8 +20,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	initializeInterface();
 }
 
-MainWindow::~MainWindow() {
-	initializeInterface();
+void MainWindow::showWireframe(const Wireframe &wireframe, bool reset) {
+	m_wfmView->showWireframe(wireframe, reset);
+}
+
+void MainWindow::showWarning(const QString &text) {
+	QMessageBox::warning(this, "Warning", text);
 }
 
 // ###############
@@ -63,7 +67,7 @@ void MainWindow::initializeInterface() {
 	});
 
 	QObject::connect(m_resetAnglesAction, &QAction::triggered, this, [this]() -> void {
-		emit resetAnglesActionTriggered();
+		m_wfmView->resetAngles();
 	});
 
 	QObject::connect(m_openEditorAction, &QAction::triggered, this, [this]() -> void {
@@ -97,14 +101,16 @@ void MainWindow::initializeInterface() {
 	editMenu->addAction(m_resetAnglesAction);
 	editMenu->addAction(m_openEditorAction);
 
-
 	// ========== LAYOUTS ============================
 
 	m_centralWidget = new QWidget(this);
 	m_mainLayout = new QVBoxLayout(m_centralWidget);
 
-	m_centralWidget->setLayout(m_mainLayout);
+	m_wfmView = new WireframeMainView(this);
 
+	m_mainLayout->addWidget(m_wfmView);
+
+	m_centralWidget->setLayout(m_mainLayout);
 	setCentralWidget(m_centralWidget);
 }
 

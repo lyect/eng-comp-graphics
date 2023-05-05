@@ -1,7 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "qcolor.h"
+#include <QColor>
+#include <QVector3D>
 
 namespace Constants {
 
@@ -14,6 +15,17 @@ namespace Constants {
 	constexpr int MIN_WINDOW_WIDTH = 640;
 	constexpr int MIN_WINDOW_HEIGHT = 480;
 
+	constexpr int MIN_X_ANGLE = -180;
+	constexpr int MAX_X_ANGLE =  180;
+	constexpr int MIN_Y_ANGLE = -180;
+	constexpr int MAX_Y_ANGLE =  180;
+	constexpr int MIN_Z_ANGLE = -180;
+	constexpr int MAX_Z_ANGLE =  180;
+
+	constexpr int MAX_ZN = 100;
+	constexpr int MIN_ZN = 1;
+	constexpr int ZN_STEP = 1;
+
 	// Editor constraints
 
 	constexpr int MIN_EDITOR_WIDTH = 1200;
@@ -24,10 +36,10 @@ namespace Constants {
 	// Render parameters constraints
 
 	constexpr int MIN_N_RENDER_PARAMETER_VALUE = 1;
-	constexpr int MAX_N_RENDER_PARAMETER_VALUE = 150;
-	constexpr int MIN_M1_RENDER_PARAMETER_VALUE = 10;
+	constexpr int MAX_N_RENDER_PARAMETER_VALUE = 100;
+	constexpr int MIN_M1_RENDER_PARAMETER_VALUE = 2;
 	constexpr int MAX_M1_RENDER_PARAMETER_VALUE = 150;
-	constexpr int MIN_M2_RENDER_PARAMETER_VALUE = 10;
+	constexpr int MIN_M2_RENDER_PARAMETER_VALUE = 1;
 	constexpr int MAX_M2_RENDER_PARAMETER_VALUE = 150;
 
 	// Geometry constraints
@@ -42,6 +54,12 @@ namespace Constants {
 
 	constexpr int DEFAULT_WINDOW_WIDTH = 800;
 	constexpr int DEFAULT_WINDOW_HEIGHT = 600;
+	const QColor MAIN_BACKGROUND_COLOR = Qt::white;
+	const QColor MAIN_WIREFRAME_COLOR = Qt::black;
+	constexpr int DEFAULT_X_ANGLE = 0;
+	constexpr int DEFAULT_Y_ANGLE = 0;
+	constexpr int DEFAULT_Z_ANGLE = 0;
+	constexpr QVector3D DEFAULT_CAMERA_POINT(-10, 0, 0);
 
 	// Editor defaults
 
